@@ -1,8 +1,8 @@
 require 'sinatra'
 require 'sinatra/reloader'
-require './helpers/post_file.rb'
-require './helpers/unique_id.rb'
-require './models/post.rb'
+require './models/post_file'
+require './models/unique_id'
+require './models/post'
 
 get '/' do
   @post_file = PostFile.new

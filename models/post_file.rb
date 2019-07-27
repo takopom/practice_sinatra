@@ -1,4 +1,4 @@
-require './models/post.rb'
+require './models/post'
 
 class PostFile
 
