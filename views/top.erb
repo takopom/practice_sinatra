@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Top</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+    <% if action == "deleted" then %>
+      <div class="alert alert-primary" role="alert">メモを削除しました</div>
+    <% end %>
+    <h1>メモアプリ</h1>
+    <button type="button" onclick="location.href='./posts/new'">追加</button>
+    <ul>
+      <% names.each do |item| %>
+        <li><a href=<%= "/posts/#{item}" %>><%= item %></a></li>
+      <% end %>
+    </ul>
+  </body>
+</html>

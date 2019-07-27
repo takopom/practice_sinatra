@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit Memo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+  <body>
+    <h1>メモアプリ</h1>
+    <h2><%= name %></h2>
+    <form action=<%= "/posts/#{name}" %> method="post">
+      <input type="hidden" id="_method" name="_method" value="patch" />
+      <div>
+        <textarea name="memo" rows="10" cols="40"><%= memo %></textarea>
+      </div>
+      <input type="submit" value="変更" />
+    </form>
+  </body>
+</html>

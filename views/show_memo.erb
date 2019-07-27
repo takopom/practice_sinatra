@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Show</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+    <% if action == "posted" then %>
+      <div class="alert alert-success" role="alert">メモを投稿しました</div>
+    <% elsif action == "updated" then %>
+      <div class="alert alert-success" role="alert">メモを変更しました</div>
+    <% end %>
+    <h1>メモアプリ</h1>
+    <h2><%= name %></h2>
+    <div>
+      <%= memo %>
+    </div>
+    <div>
+      <button type="button" onclick=<%= "location.href='./#{name}/edit'" %>>変更</button>
+      <form action=<%= "./#{name}" %> method="post">
+        <input type="hidden" id="_method" name="_method" value="delete" />
+        <input type="submit" value="削除" />
+      </form>
+      <button type="button" onclick="location.href='/'">トップへ</a>
+    <div>
+  </body>
+</html>
