@@ -12,34 +12,28 @@ class UniqueID
     Dir.mkdir(PATH) if !Dir.exist?(PATH)
   end
 
-  def init_id
-    write(START_ID)
+  def make_file
+    FileUtils.touch(path()) if !File.exist?(path())
   end
 
   def id
-    init_id if !File.exist?(path())
-    read().to_i
-  end
-
-  def increment
-    id = read().to_i + 1
-    write(id.to_s)
-  end
-
-  def read()
+    value = START_ID
     make_dir()
-    text = ""
-    File.open(path(), "r") do |f|
-      text = f.read()
+    make_file()
+    
+    File.open(path(), "r+") do |f|
+      f.flock(File::LOCK_EX)
+      puts "#{f.size}"
+      if f.size == 0 then
+        value = START_ID
+      else
+        value = f.read.to_i + 1
+      end
+      f.rewind
+      f.puts("#{value}")
+      f.flock(File::LOCK_UN)
     end
-    text
-  end
-
-  def write(text)
-    make_dir()
-    File.open(path(), "w") do |f|
-      f.puts(text)
-    end
+    value
   end
 
 end

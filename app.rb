@@ -4,6 +4,7 @@ require './models/post_file'
 require './models/unique_id'
 require './models/post'
 
+
 get '/' do
   @post_file = PostFile.new
   posts = @post_file.all()
@@ -21,7 +22,6 @@ post '/posts' do
   post = Post.new(id, params[:memo])
   @post_file = PostFile.new
   @post_file.write(post)
-  @unique_id.increment()
   redirect to("/posts/#{id}?action=posted"), 303
 end
 
@@ -41,7 +41,7 @@ patch '/posts/:name' do
   @post_file = PostFile.new
   post = Post.new(params[:name], params[:memo])
   @post_file.write(post)
-  redirect to("/posts/#{post.name}?action=updated"), 303
+  redirect to("/posts/#{post.name}?action=edited"), 303
 end
 
 delete '/posts/:name' do
