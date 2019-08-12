@@ -1,0 +1,28 @@
+.contents {
+  padding: 0px 16px 0px 16px;
+}
+
+.navbar-icon {
+  width: 64px;
+  height: 64px;
+  background-color: #fff;
+  padding: 12px;
+  margin: 0px 16px 0px 16px;
+  border-radius: 3px;
+}
+
+img.add {
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 50%;
+  margin: 0px 8px 4px 0px;
+}
+
+.btn {
+  margin: 16px 0px 16px 0px;
+}
+
+.memo-list {
+  margin: 16px 0px 8px 0px;
+}
