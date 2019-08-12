@@ -3,6 +3,7 @@
   <head>
     <title>Show</title>
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/github-markdown.css">
   </head>
   <body>
     <% if action == "posted" then %>
@@ -12,9 +13,9 @@
     <% end %>
     <h1>メモアプリ</h1>
     <h2><%= name %></h2>
-    <div>
-      <%= memo %>
-    </div>
+    <article class="markdown-body">
+      <%= markdown(memo) %>
+    </article>
     <div>
       <button type="button" onclick=<%= "location.href='./#{name}/edit'" %>>変更</button>
       <form action=<%= "./#{name}" %> method="post">
