@@ -21,6 +21,10 @@
   margin-right: 16px;
 }
 
+.memo-list-area {
+  margin: 32px 0px 16px 0px;
+}
+
 .memo-list {
   margin: 16px 0px 16px 0px;
 }
