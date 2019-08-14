@@ -1,14 +1,12 @@
 require 'sinatra'
 require 'sinatra/reloader'
-require './models/post_file'
-require './models/unique_id'
 require './models/post'
-
+require './models/unique_id.rb'
 
 get '/' do
-  @post_file = PostFile.new
-  posts = @post_file.all()
-  posts = @post_file.sort(posts)
+  Post.init
+  UniqueID.init
+  posts = Post.all
   erb :top, :locals => { :names => posts, :action => params[:action] }
 end
 
@@ -17,35 +15,30 @@ get '/posts/new' do
 end
 
 post '/posts' do
-  @unique_id = UniqueID.new
-  id = @unique_id.id()
+  id = UniqueID.id
   post = Post.new(id, params[:memo])
-  @post_file = PostFile.new
-  @post_file.write(post)
+  post.save
   redirect to("/posts/#{id}?action=posted"), 303
 end
 
 get '/posts/:name' do
-  @post_file = PostFile.new
-  post = @post_file.read(params[:name])
+  post = Post.find(params[:name])
   erb :show_memo, :locals => { :name => post.name, :memo => post.memo, :action => params[:action] }
 end
 
 get '/posts/:name/edit' do
-  @post_file = PostFile.new
-  post = @post_file.read(params[:name])
+  post = Post.find(params[:name])
   erb :edit_memo, :locals => { :name => post.name, :memo => post.memo }
 end
 
 patch '/posts/:name' do
-  @post_file = PostFile.new
   post = Post.new(params[:name], params[:memo])
-  @post_file.write(post)
+  post.save
   redirect to("/posts/#{post.name}?action=edited"), 303
 end
 
 delete '/posts/:name' do
-  @post_file = PostFile.new
-  @post_file.delete(params[:name])
+  post = Post.find(params[:name])
+  post.destroy
   redirect to('?action=deleted'), 303
 end

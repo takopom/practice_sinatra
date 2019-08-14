@@ -1,32 +1,18 @@
 class UniqueID
 
-  PATH = './posts'
-  FILE_NAME = 'id.txt'
+  FILE_PATH = './posts/id.txt'
   START_ID = '1'
 
-  def path
-    "#{PATH}/#{FILE_NAME}"
+  def self.init
+    FileUtils.touch(FILE_PATH) if !File.exist?(FILE_PATH)
   end
 
-  def make_dir
-    Dir.mkdir(PATH) if !Dir.exist?(PATH)
-  end
-
-  def make_file
-    FileUtils.touch(path()) if !File.exist?(path())
-  end
-
-  def id
+  def self.id
     value = START_ID
-    make_dir()
-    make_file()
-    
-    File.open(path(), "r+") do |f|
+    File.open(FILE_PATH, "r+") do |f|
       f.flock(File::LOCK_EX)
       puts "#{f.size}"
-      if f.size == 0 then
-        value = START_ID
-      else
+      if f.size > 0 then
         value = f.read.to_i + 1
       end
       f.rewind
