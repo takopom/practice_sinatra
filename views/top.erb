@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Top</title>
+    <title>メモアプリ</title>
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
   </head>
   <body>
     <nav class="navbar navbar-dark bg-dark">
-      <a href="#" class="navbar-brand"><img class="navbar-icon" src="/images/icon_memo.svg">メモアプリ</a>
+      <a href="/" class="navbar-brand"><img class="navbar-icon" src="/images/icon_memo.svg">メモアプリ</a>
     </nav>
-    <% if action == "deleted" then %>
-      <div class="alert alert-primary" role="alert">メモを削除しました</div>
-    <% end %>
+    <div class="action-alert">
+      <% if action == "deleted" then %>
+        <div class="alert alert-primary" role="alert">メモを削除しました</div>
+      <% end %>
+    </div>
     <div class="contents">
-      <button type="button" class="btn btn-primary add" onclick="location.href='./posts/new'"><img class="add" src="/images/icon_add.svg">メモを書く</button>
-      <ul class="list-group memo-list">
-        <% names.each do |item| %>
-          <li class="list-group-item"><a href=<%= "/posts/#{item}" %>><%= item %></a></li>
-        <% end %>
-      </ul>
+      <button type="button" class="btn btn-primary form-button" onclick="location.href='./posts/new'">新しいメモを書く</button>
+      <section class="memo-list">
+        <h5>メモリスト</h5>
+        <ul class="list-group memo-list">
+          <% names.each do |item| %>
+            <li class="list-group-item"><a href=<%= "/posts/#{item}" %>><%= item %></a></li>
+          <% end %>
+        </ul>
+      </section>
     </div>
   </body>
 </html>

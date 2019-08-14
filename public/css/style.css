@@ -1,5 +1,5 @@
 .contents {
-  padding: 0px 16px 0px 16px;
+  padding: 16px 16px 16px 16px;
 }
 
 .navbar-icon {
@@ -11,18 +11,20 @@
   border-radius: 3px;
 }
 
-img.add {
-  width: 20px;
-  height: 20px;
-  background-color: #fff;
-  border-radius: 50%;
-  margin: 0px 8px 4px 0px;
-}
-
-.btn {
+.form-buttons {
+  display: flex;
   margin: 16px 0px 16px 0px;
 }
 
+.form-button {
+  width: 160px;
+  margin-right: 16px;
+}
+
 .memo-list {
-  margin: 16px 0px 8px 0px;
+  margin: 16px 0px 16px 0px;
+}
+
+.memo-body {
+  margin: 32px 0px 32px 0px;
 }

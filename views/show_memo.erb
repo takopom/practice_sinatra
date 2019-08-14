@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Show</title>
+    <title>メモ <%= name %></title>
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/github-markdown.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
   </head>
   <body>
-    <% if action == "posted" then %>
-      <div class="alert alert-success" role="alert">メモを投稿しました</div>
-    <% elsif action == "edited" then %>
-      <div class="alert alert-success" role="alert">メモを変更しました</div>
-    <% end %>
-    <h1>メモアプリ</h1>
-    <h2><%= name %></h2>
-    <article class="markdown-body">
-      <%= markdown(memo) %>
-    </article>
-    <div>
-      <button type="button" onclick=<%= "location.href='./#{name}/edit'" %>>変更</button>
-      <form action=<%= "./#{name}" %> method="post">
-        <input type="hidden" id="_method" name="_method" value="delete" />
-        <input type="submit" value="削除" />
-      </form>
-      <button type="button" onclick="location.href='/'">トップへ</a>
-    <div>
+    <nav class="navbar navbar-dark bg-dark">
+      <a href="/" class="navbar-brand"><img class="navbar-icon" src="/images/icon_memo.svg">メモアプリ</a>
+    </nav>
+    <div class="action-alert">
+      <% if action == "posted" then %>
+        <div class="alert alert-success" role="alert">メモ<%= name %>を投稿しました</div>
+      <% elsif action == "edited" then %>
+        <div class="alert alert-success" role="alert">メモ<%= name %>を変更しました</div>
+      <% end %>
+    </div>
+    <div class="contents">
+      <h3 class="border-bottom border-dark">メモ<%= name %></h3>
+      <article class="markdown-body memo-body">
+        <%= markdown(memo) %>
+      </article>
+      <div class="form-buttons">
+        <button class="btn btn-primary form-button" type="button" onclick=<%= "location.href='./#{name}/edit'" %>>変更</button>
+        <form action=<%= "./#{name}" %> method="post">
+          <input type="hidden" id="_method" name="_method" value="delete" />
+          <input class="btn btn-danger form-button" type="submit" value="削除" />
+        </form>
+      </div>
+    </div>
   </body>
 </html>
