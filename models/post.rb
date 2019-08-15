@@ -11,11 +11,8 @@ class Post
     @memo = memo
   end
 
-  def self.init
-    Dir.mkdir(PATH) if !Dir.exist?(PATH)
-  end
-
   def self.all
+    FileUtils.mkdir_p(PATH)
     posts = File.join(PATH, '*' + FILE_EXT)
     names = Dir.glob(posts).map { |item| File.basename(item, FILE_EXT) }
     names.sort.reverse
@@ -27,6 +24,7 @@ class Post
 
   def self.find(name)
     memo = ""
+    FileUtils.mkdir_p(PATH)
     File.open(path(name), "r") do |f|
       memo = f.read()
     end
@@ -34,6 +32,7 @@ class Post
   end
 
   def save
+    FileUtils.mkdir_p(PATH)
     File.open(Post.path(@name), "w") do |f|
       f.puts(@memo)
     end
@@ -41,6 +40,7 @@ class Post
 
   def destroy
     filepath = Post.path(@name)
+    FileUtils.mkdir_p(PATH)
     File.delete(filepath) if File.exist?(filepath)
   end
 
