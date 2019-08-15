@@ -5,7 +5,6 @@ require './models/unique_id.rb'
 
 get '/' do
   Post.init
-  UniqueID.init
   posts = Post.all
   erb :top, :locals => { :names => posts, :action => params[:action] }
 end

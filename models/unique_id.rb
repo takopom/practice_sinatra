@@ -3,14 +3,10 @@ class UniqueID
   FILE_PATH = './posts/id.txt'
   START_ID = '1'
 
-  def self.init
-    FileUtils.touch(FILE_PATH) if !File.exist?(FILE_PATH)
-  end
-
   def self.id
     value = START_ID
-    File.open(FILE_PATH, "r+") do |f|
-      f.flock(File::LOCK_EX)
+    File.open(FILE_PATH, File::RDWR|File::CREAT) do |f|
+        f.flock(File::LOCK_EX)
       puts "#{f.size}"
       if f.size > 0 then
         value = f.read.to_i + 1
